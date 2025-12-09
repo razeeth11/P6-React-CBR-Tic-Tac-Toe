@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { RotateCw } from "lucide-react";
+import { useState } from "react";
 
 export function TicTacToe() {
-  const array = new Array(9).fill("");
+  const [boardBlock, setBoardBlock] = useState(new Array(9).fill(""));
 
   function clickBlockHandler(index) {
-    array[index] = "X";
-
-    console.log(array[index]);
+    setBoardBlock((prev) => prev.map((b, i) => (index === i ? "X" : b)));
   }
 
   return (
@@ -32,7 +31,7 @@ export function TicTacToe() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-5">
-        {array.map((block, index) => (
+        {boardBlock.map((block, index) => (
           <Button
             key={index}
             className="flex items-center justify-center text-7xl font-extrabold size-30 rounded-2xl border-b-8 border-[#102129] bg-[#1f3540] hover:bg-[#9cb4c0] cursor-pointer"
